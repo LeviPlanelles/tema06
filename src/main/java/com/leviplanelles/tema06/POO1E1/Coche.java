@@ -1,10 +1,10 @@
 package com.leviplanelles.tema06.POO1E1;
 
 public class Coche {
-    private enum TipoCoche {
+    enum TipoCoche {
         MINI, UTILITARIO, FAMILIAR, DEPORTIVO
     }
-    private enum ModalidadSeguro {
+    enum ModalidadSeguro {
         TERCERO, TODO_RIESGO
     }
 
