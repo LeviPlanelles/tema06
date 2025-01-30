@@ -53,6 +53,7 @@ public class Principal {
                 for (int i = 0; i < alumnos.length; i++) {
                     if (alumnos[i] != null && alumnos[i].getApellidos().contains(apellido)) {
                         System.out.println(alumnos[i].toString());
+
                     }
                 }
             }
@@ -95,9 +96,12 @@ public class Principal {
                             String fecha = IO.solicitarString("Fecha de nacimiento:");
                             String grupo = IO.solicitarString("Grupo:");
                             int telefono = IO.solicitarInt("Teléfono contacto:", 0, 1000000000);
-                            for (int j = 0; i < alumnos.length; i++) {
+
+                            if (alumnos[posicion] == null) {
                                 alumnos[posicion] = new Alumno(NIA, nombre, apellido, fecha, grupo, telefono);
                                 posicion++;
+                                break;
+
                             }
                         }
                     }
