@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Principal {
-
+    public static Alumno[] alumnos = new Alumno[100];
     public static int subMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("***************");
@@ -21,10 +21,41 @@ public class Principal {
         int choice = IO.solicitarInt("",0,4);
         switch (choice) {
             case 0 -> {}
-            case 1 -> {}
-            case 2 -> {}
-            case 3 -> {}
-            case 4 -> {}
+            case 1 -> {
+                String grupo = IO.solicitarString("Indique el grupo:");
+                for (int i = 0; i < alumnos.length; i++) {
+                    if (alumnos[i] != null && alumnos[i].getGrupo().equals(grupo)) {
+                        System.out.println(alumnos[i].toString());
+                    }
+                }
+            }
+            case 2 -> {
+                int fechaNacimiento = IO.solicitarInt("Indique la edad:",0,100);
+                for (int i = 0; i < alumnos.length; i++) {
+                    if (alumnos[i] != null && alumnos[i].getEdad() == fechaNacimiento) {
+                        System.out.println(alumnos[i].toString());
+                    }
+                }
+            }
+            case 3 -> {
+                String NIA = IO.solicitarString("NIA del alumno:", 0, 10000000);
+                for (int i = 0; i < alumnos.length; i++) {
+                    if (alumnos[i] != null && alumnos[i].getNia().equals(NIA)) {
+                        System.out.println("No se puede añadir un alumnos porque ya existe uno igual");
+                        break;
+                    }
+                }
+            }
+            case 4 -> {
+
+                String apellido = IO.solicitarString("Pon parte de un apellido:");
+
+                for (int i = 0; i < alumnos.length; i++) {
+                    if (alumnos[i] != null && alumnos[i].getApellidos().contains(apellido)) {
+                        System.out.println(alumnos[i].toString());
+                    }
+                }
+            }
         }
         return choice;
 
@@ -45,7 +76,6 @@ public class Principal {
     }
 
     public static void main(String[] args) {
-        Alumno[] alumnos = new Alumno[100];
         int posicion = 0;
         int choice;
         do {

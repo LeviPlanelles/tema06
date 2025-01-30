@@ -73,4 +73,15 @@ public class Alumno {
         this.telefonoContacto = telefonoContacto;
     }
 
+    @Override
+    public String toString() {
+        return "Alumno{" +
+                "nia='" + nia + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", grupo='" + grupo + '\'' +
+                ", telefonoContacto=" + telefonoContacto +
+                '}';
+    }
 }
