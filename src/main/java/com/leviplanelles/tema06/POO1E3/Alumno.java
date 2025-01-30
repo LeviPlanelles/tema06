@@ -1,10 +1,14 @@
 package com.leviplanelles.tema06.POO1E3;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class Alumno {
     private String nia;
     private String nombre;
     private String apellidos;
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String grupo;
     private int telefonoContacto;
 
@@ -12,7 +16,8 @@ public class Alumno {
         this.nia = nia;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.fechaNacimiento = fechaNacimiento;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formatter);
         this.grupo = grupo;
         this.telefonoContacto = telefonoContacto;
     }
@@ -41,11 +46,14 @@ public class Alumno {
         this.apellidos = apellidos;
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
+    public int getEdad() {
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
+    }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
