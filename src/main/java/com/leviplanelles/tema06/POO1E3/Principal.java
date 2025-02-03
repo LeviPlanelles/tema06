@@ -2,7 +2,6 @@ package com.leviplanelles.tema06.POO1E3;
 
 import com.leviplanelles.tema06.lib.IO;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Principal {

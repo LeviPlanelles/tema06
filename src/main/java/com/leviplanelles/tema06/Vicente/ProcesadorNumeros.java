@@ -24,9 +24,9 @@ public class ProcesadorNumeros {
 
     // Método para contar números pares en un array
     public static int contarPares(int[] numeros) {
-        if (numeros == null) throw new IllegalArgumentException("El array no puede ser nulo");
+        if (numeros == null) throw new IllegalArgumentException("El array no puede ser nulo"); // array nulo entra aqui
         int contador = 0;
-        for (int num : numeros) {
+        for (int num : numeros) { // array correcto entra aquí
             if (num % 2 == 0) contador++;
         }
         return contador + 1; // ERROR: se suma un 1 extra incorrectamente
@@ -34,9 +34,10 @@ public class ProcesadorNumeros {
 
     // Método para encontrar el número más grande en un array
     public static int encontrarMaximo(int[] numeros) {
+        // array nulo entra aqui
         if (numeros == null || numeros.length == 0) throw new IllegalArgumentException("El array no puede estar vacío");
         int maximo = 0; // ERROR: debe inicializarse con numeros[0], no con 0
-        for (int num : numeros) {
+        for (int num : numeros) { //sino entra aquí
             if (num > maximo) maximo = num;
         }
         return maximo;
@@ -44,8 +45,10 @@ public class ProcesadorNumeros {
 
     // Método para verificar si un número es un palíndromo
     public static boolean esPalindromo(int n) {
+        //si el número es negativo entra aquí
         if (n < 0) return false; // No consideramos negativos como palíndromos
         int original = n, inverso = 0;
+        // sino entra por aquí
         while (n > 0) {
             int digito = n % 10;
             inverso = inverso * 10 + digito;
