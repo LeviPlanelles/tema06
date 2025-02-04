@@ -1,4 +1,4 @@
-package com.leviplanelles.tema06.Vicente;
+/*package com.leviplanelles.tema06.Vicente;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,4 +25,4 @@ class ProcesadorNumerosTest {
     @Test
     void esPalindromo() {
     }
-}
+}*/

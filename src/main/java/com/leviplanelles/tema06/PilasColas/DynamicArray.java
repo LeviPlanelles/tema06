@@ -1,8 +1,50 @@
 package com.leviplanelles.tema06.PilasColas;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class DynamicArray {
+    public static void main(String[] args) {
+        Random r = new Random();
+        DynamicArray da = new DynamicArray();
+        for (int i = 0; i < 10; i++) {
+            da.add(r.nextDouble() * 10);
+        }
+        System.out.println(da.toString());
+        for (int i = 0; i < 10; i++) {
+            System.out.printf("dynamicArray[%d] = %.2f\n",i,da.get(i));
+        }
+        System.out.println();
+        System.out.println("da.add(1.111111)");
+        da.add(1.111111);
+        System.out.println(da.toString());
+
+        System.out.println();
+        System.out.println("da.add(1,60.9)");
+        da.add(1,60.9);
+        System.out.println(da.toString());
+
+        System.out.println();
+        System.out.println("da.remove(1)");
+        //da.remove(1);
+        System.out.println(da.toString());
+
+        System.out.println();
+        System.out.println("da.remove(1.111111)");
+        da.remove(1.111111);
+        System.out.println(da.toString());
+
+        System.out.println();
+        System.out.println("da.get(0)");
+        System.out.println(da.get(0));
+
+        System.out.println();
+        System.out.println("da.set(0,66666.6)");
+        da.set(0,66666.6);
+        System.out.println(da.toString());
+
+
+    }
     private static final double ERROR = Double.NEGATIVE_INFINITY;
     private final static int DEFAULT_CAPACITY = 10;
     private final static float GROW_FACTOR = 2f;
