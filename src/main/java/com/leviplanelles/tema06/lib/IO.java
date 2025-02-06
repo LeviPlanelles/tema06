@@ -1,4 +1,8 @@
 package com.leviplanelles.tema06.lib;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -191,5 +195,20 @@ public class IO {
             }
         }
         return longitudMaxima;
+    }
+
+    public static String readFile(File archivo) {
+        if (!archivo.exists() || !archivo.isFile()) {
+            System.err.println("Error: El archivo no existe o no es válido -> " + archivo.getPath());
+            return "";
+        }
+
+        // Intentamos usar Files.readString() si se ejecuta en Java 11 o superior
+        try {
+            return Files.readString(Path.of(archivo.getPath()));
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo -> " + archivo.getPath());
+            return "";
+        }
     }
 }

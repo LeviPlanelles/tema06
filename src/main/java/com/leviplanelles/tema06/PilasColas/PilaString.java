@@ -13,7 +13,7 @@ public class PilaString {
     private int size;
 
     /**
-     * Crea una pila con el tamaño inicial por defecto INITIAL_SIZE
+     * Crea una pila co+n el tamaño inicial por defecto INITIAL_SIZE
      */
     public PilaString() {
         this(INITIAL_SIZE);
@@ -56,7 +56,7 @@ public class PilaString {
      * @return El elemento de la cima o Double.NEGATIVE_INFINITY si la pila está vacía
      */
     public String pop() {
-        String e = String.valueOf(ERROR);
+        String e = null;
         if (!isEmpty()) {
             e = data[size - 1];
             size--;
@@ -69,7 +69,7 @@ public class PilaString {
      * @return El elemento de la cima o Double.NEGATIVE_INFINITY si la pila está vacía
      */
     public String top() {
-        String e = String.valueOf(ERROR);
+        String e = null;
         if (!isEmpty()) {
             e = data[size - 1];
         }
