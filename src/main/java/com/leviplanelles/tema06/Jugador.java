@@ -34,4 +34,5 @@ public class Jugador {
                 ", estadoForma=" + estadoForma +
                 '}';
     }
+
 }
