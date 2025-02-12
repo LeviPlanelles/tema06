@@ -1,9 +1,11 @@
 package com.leviplanelles.tema06.gestionHospital;
 
+import java.util.Arrays;
+
 public class Cola<T> {
 
 
-    private final static int DEFAULT_CAPACITY = 10;
+    private final static int DEFAULT_CAPACITY = 5;
     private final static float GROW_FACTOR = 2f;
     private T[] data;
     private int size;
@@ -63,15 +65,16 @@ public class Cola<T> {
         if (isEmpty())
             return null;
         T valor = data[0];
+        size--;
         moveToLeft();
         return valor;
     }
 
     private void moveToLeft() {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size -1; i++) {
             data[i] = data[i + 1];
         }
-        size--;
+
     }
 
     private void moveToRight(int index) {
@@ -104,6 +107,6 @@ public class Cola<T> {
 
     @Override
     public String toString() {
-        return "Cola " + data;
+        return Arrays.toString(Arrays.copyOf(data,size));
     }
 }

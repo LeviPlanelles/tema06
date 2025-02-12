@@ -1,18 +1,27 @@
 package com.leviplanelles.tema06.gestionHospital;
 
-import java.util.Random;
-
 public class Medico {
-    Random random = new Random();
-    private static String nombre;
-    private int NUM_COLEGIADO = random.nextInt(100000,999999);
+    private String nombre;
+    private int numColegiado;
 
-    public Medico(String nombre, int NUM_COLEGIADO) {
+    public Medico(String nombre, int numColegiado) {
         this.nombre = nombre;
-        this.NUM_COLEGIADO = NUM_COLEGIADO;
+        this.numColegiado = numColegiado;
     }
 
-    public Medico() {
-        this("Sin Nombre", 000000);
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getNumColegiado() {
+        return numColegiado;
+    }
+
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "nombre='" + nombre + '\'' +
+                ", numColegiado=" + numColegiado +
+                '}'+" ";
     }
 }
