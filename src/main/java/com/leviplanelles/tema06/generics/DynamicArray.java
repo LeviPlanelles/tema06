@@ -1,51 +1,35 @@
-package com.leviplanelles.tema06.gestionHospital;
+package com.leviplanelles.tema06.generics;
 
 import java.util.Arrays;
 
 
-public class DynamicArray {
-    private static final double ERROR = Double.NEGATIVE_INFINITY;
+public class DynamicArray<T> {
     /* Capacidad inicial por defecto del array */
     private final static int DEFAULT_CAPACITY = 10;
     /* Factor de crecimiento */
     private final static float GROW_FACTOR = 2f;
     /* Los datos del array */
-    private double[] data;
+    private Object[] data;
     /* Número de elementos del array */
     private int size;
 
-    /**
-     * Crear un array dinámico con la capacidad inicial por defecto
-     */
     public DynamicArray() {
         this(DEFAULT_CAPACITY);
     }
 
-    /**
-     * Crea un array dinámico con la capacidad inicial indicada
-     * @param capacity Capacidad inicial
-     */
+
     public DynamicArray(int capacity) {
-        data = new double[capacity];
+        data = new Object[capacity];
         size = 0;
     }
 
-    /**
-     * Obtiene el elemento que ocupa el índice index
-     * @param index Índice del elemento a obtener
-     * @return el valor obtenido o ERROR
-     */
-    public double get(int index) {
+
+    public T get(int index) {
         if (index >= size || index < 0)
-            return ERROR;
-        return data[index];
+            throw new IllegalArgumentException("Índice fuera de rango");
+        return (T) data[index];
     }
 
-    /**
-     * Añade el elemento indicado al array
-     * @param value Elemento a añadir
-     * @return true
-     */
     public boolean add(double value) {
         if (isFull())
             expand();
@@ -54,11 +38,6 @@ public class DynamicArray {
         return true;
     }
 
-
-    /**
-     * Método de uso interno para desplazar los elementos a la derecha a partir del índice indicado
-     * @param index Índice a partir del cual se desplazarán los elementos
-     */
     private void moveToRight(int index) {
         for (int i = size; i > index; i--) {
             data[i] = data[i - 1];
@@ -66,13 +45,6 @@ public class DynamicArray {
         size++;
     }
 
-
-    /**
-     * Añade el elemento indicado al array en la posición indicada por index
-     * @param index Índice donde se añadirá el elemento
-     * @param value Elemento a añadir
-     * @return true
-     */
     public boolean add(int index, double value) {
         if (index >= size || index < 0)
             return false;
@@ -83,10 +55,6 @@ public class DynamicArray {
         return true;
     }
 
-    /**
-     * Método de uso interno para desplazar los elementos a la izquierda a partir del índice indicado
-     * @param index Índice a partir del cual se desplazarán los elementos
-     */
     private void moveToLeft(int index) {
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i + 1];
@@ -94,27 +62,15 @@ public class DynamicArray {
         size--;
     }
 
-    /**
-     * Elimina del array el elemento que ocupa la posición desplazando una posición a la izquierda
-     * todos los elementos que hay a su derecha
-     * @param index posición a eliminar
-     * @return El valor eliminado
-     */
-    public double remove(int index) {
+    public T remove(int index) {
         if (index >= size || index < 0)
-            return ERROR;
-        double valor = data[index];
+            throw new IllegalArgumentException();
+        T valor = (T) data[index];
         moveToLeft(index);
         return valor;
     }
 
-    /**
-     * Elimina del array la primera ocurrencia del valor indicado como parámetro desplazando una posición
-     * a la izquierda todos los elementos que haya a su derecha
-     * @param value valor a eliminar
-     * @return true si se ha borrado el elemento, false en caso contrario
-     */
-    public boolean remove(double value) {
+    public boolean remove(T value) {
         for (int i = 0; i < size; i++) {
             if (data[i] == value) {
                 moveToLeft(i);
@@ -124,42 +80,25 @@ public class DynamicArray {
         return false;
     }
 
-    /**
-     * Establece el valor del elemento con índice index
-     * @param index Índice del elemento a modificar
-     * @param value Valor que toma el elemento
-     * @return true
-     */
-    public boolean set(int index, double value) {
+    public boolean set(int index, T value) {
         if (index >= size || index < 0)
             return false;
         data[index] = value;
         return true;
     }
 
-    /**
-     * Método de uso interno para ampliar la capacidad del array según el factor de crecimiento
-     */
     private void expand() {
-        double[] copy = new double[Math.round(data.length * GROW_FACTOR)];
+        Object[] copy = new Object[Math.round(data.length * GROW_FACTOR)];
         for (int i = 0; i < size; i++) {
             copy[i] = data[i];
         }
         data = copy;
     }
 
-    /**
-     * Obtiene el número de elementos que hay en el array
-     * @return int
-     */
     public int size() {
         return size;
     }
 
-    /**
-     * Método de uso interno para determinar si el array está lleno
-     * @return true si está lleno, false si no lo está
-     */
     private boolean isFull() {
         return size == data.length;
     }

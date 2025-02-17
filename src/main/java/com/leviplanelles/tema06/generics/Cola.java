@@ -1,4 +1,4 @@
-package com.leviplanelles.tema06.gestionHospital;
+package com.leviplanelles.tema06.generics;
 
 import java.util.Arrays;
 
