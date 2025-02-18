@@ -4,6 +4,61 @@ import java.util.Arrays;
 
 public class Cola<T> {
 
+    public static void main(String[] args) {
+        Cola <String> cola = new Cola<>();
+        for (int i = 0; i < DEFAULT_CAPACITY; i++) {
+            cola.add(String.valueOf(i));
+        }
+        System.out.println(cola);
+        int busqueda = cola.search("2");
+        System.out.println(busqueda);
+        cola.reverse();
+        System.out.println(cola);
+        System.out.println(cola.peekLast());
+        System.out.println(Arrays.toString(cola.clonar()));
+    }
+
+    public void clear() {
+        size = 0;
+    }
+
+    public T[] clonar() {
+        Object[] aux = new Object[size];
+        for (int i = 0; i < size; i++) {
+            aux[i] = data[i];
+        }
+        return (T[]) aux;
+    }
+
+    public T peekLast() {
+        if (isEmpty())
+            return null;
+        return data[size-1];
+    }
+
+    public int search(T element) {
+        int contador = 0;
+        if (isEmpty())
+            return -1;
+        for (int i = size - 1; i >= 0; i--) {
+            contador++;
+            if (data[i].equals(element)) {
+                return contador;
+            }
+        }
+        return -1;
+    }
+
+    public void reverse() {
+        @SuppressWarnings("unchecked")
+        T[] aux = (T[]) new Object[size];
+        int contador = 0;
+        for (int i = size - 1; i >= 0; i--) {
+            aux[contador++] = data[i];
+        }
+        data = aux;
+    }
+
 
     private final static int DEFAULT_CAPACITY = 5;
     private final static float GROW_FACTOR = 2f;

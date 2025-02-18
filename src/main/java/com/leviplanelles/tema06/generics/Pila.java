@@ -6,7 +6,7 @@ import java.util.EmptyStackException;
 public class Pila<T> {
 
    public static void main(String[] args) {
-        Pila <Object> pila = new Pila<>();
+       Pila <Object> pila = new Pila<>();
        for (int i = 0; i < INITIAL_SIZE; i++) {
            pila.push(i);
        }
@@ -17,11 +17,6 @@ public class Pila<T> {
        System.out.println(pila);
        System.out.println(Arrays.toString(pila.peek(2)));
        System.out.println(Arrays.toString(pila.clonar()));
-       System.out.println("comida");
-       System.out.println("probando probando");
-       System.out.println("probando por decimo cuarta vez");
-
-
     }
 
     private static final int INITIAL_SIZE = 10;
