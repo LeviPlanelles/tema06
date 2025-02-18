@@ -16,6 +16,7 @@ public class DynamicArray<T> {
         dynamicArray.swap(0,9);
         System.out.println(dynamicArray);
         System.out.println(Arrays.toString(dynamicArray.clonar()));
+        System.out.println("comiteame esta");
 
 
     }
