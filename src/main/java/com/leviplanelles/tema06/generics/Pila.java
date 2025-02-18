@@ -18,6 +18,7 @@ public class Pila<T> {
        System.out.println(Arrays.toString(pila.peek(2)));
        System.out.println(Arrays.toString(pila.clonar()));
        System.out.println("comida");
+       System.out.println("probando probando");
 
     }
 
