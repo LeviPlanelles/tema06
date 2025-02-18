@@ -65,6 +65,7 @@ public class Pila<T> {
     }
 
     public void reverse() {
+        if (isEmpty() || size == 1) return;
         Object[] aux = new Object[size];
         int contador = 0;
         for (int i = size - 1; i >= 0; i--) {

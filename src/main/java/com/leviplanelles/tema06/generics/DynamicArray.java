@@ -4,6 +4,22 @@ import java.util.Arrays;
 
 
 public class DynamicArray<T> {
+
+    public static void main(String[] args) {
+        DynamicArray <Object> dynamicArray = new DynamicArray<>();
+        for (int i = 0; i < DEFAULT_CAPACITY; i++) {
+            dynamicArray.add(i);
+        }
+        System.out.println(dynamicArray);
+        int indice = dynamicArray.indexOf(4);
+        System.out.println(indice);
+        dynamicArray.swap(0,9);
+        System.out.println(dynamicArray);
+        System.out.println(Arrays.toString(dynamicArray.clonar()));
+
+
+    }
+
     /* Capacidad inicial por defecto del array */
     private final static int DEFAULT_CAPACITY = 10;
     /* Factor de crecimiento */
@@ -12,6 +28,46 @@ public class DynamicArray<T> {
     private Object[] data;
     /* Número de elementos del array */
     private int size;
+
+    public void clear() {
+        size = 0;
+    }
+
+    public T[] clonar() {
+        Object[] aux = new Object[size];
+        for (int i = 0; i < size; i++) {
+            aux[i] = data[i];
+        }
+        return (T[]) aux;
+    }
+
+    public int indexOf(T element) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void trimToSize() {
+        if (size < data.length) {
+            Object[] copy = new Object[size];
+            for (int i = 0; i < size; i++) {
+                copy[i] = data[i];
+            }
+            data = copy;
+        }
+    }
+
+    public boolean swap(int index1, int index2) {
+        if (index1 < 0 || index1 >= size) return false;
+        if (index2 < 0 || index2 >= size) return false;
+        if (index1 == index2) return true;
+        T aux = (T) data[index1];
+        data[index1] = data[index2];
+        data[index2] = aux;
+        return true;
+    }
 
     public DynamicArray() {
         this(DEFAULT_CAPACITY);
@@ -30,7 +86,7 @@ public class DynamicArray<T> {
         return (T) data[index];
     }
 
-    public boolean add(double value) {
+    public boolean add(T value) {
         if (isFull())
             expand();
         data[size] = value;
@@ -45,7 +101,7 @@ public class DynamicArray<T> {
         size++;
     }
 
-    public boolean add(int index, double value) {
+    public boolean add(int index, T value) {
         if (index >= size || index < 0)
             return false;
         if (isFull())
