@@ -127,7 +127,7 @@ public class Principal {
         }
     }
     public static void mostrarStock(Tienda tienda) {
-        System.out.println(Arrays.toString(tienda.getBicicletas()));
+        System.out.println(tienda);
     }
     public static void porReferencia(Tienda tienda) {
         Scanner scanner = new Scanner(System.in);

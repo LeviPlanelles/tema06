@@ -1,14 +1,11 @@
 package com.leviplanelles.tema06.POO1E6;
 
-import java.util.Arrays;
-
 public class Tienda {
     private Bicicleta[] bicicletas;
-    private int nReferencias;
-    private int contadorBicis = 0;
+    private int contadorBicis;
 
     public Tienda() {
-        nReferencias = 0;
+        contadorBicis = 0;
         bicicletas = new Bicicleta[100];
     }
 
@@ -16,9 +13,6 @@ public class Tienda {
         return bicicletas;
     }
 
-    public int getnReferencias() {
-        return nReferencias;
-    }
     public int getContadorBicis() {return contadorBicis; }
     public void setContadorBicis(int contadorBicis) {
         this.contadorBicis = contadorBicis;
@@ -26,10 +20,16 @@ public class Tienda {
 
     @Override
     public String toString() {
-        return "Tienda{" +
-                "bicicletas=" + Arrays.toString(bicicletas) +
-                ", nReferencias=" + nReferencias +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tienda: \n");
+        for (int i = 0; i < contadorBicis; i++) {
+            sb.append(bicicletas[i]).append(",\n");
+        }
+        if (!sb.isEmpty()) {
+            sb.deleteCharAt(sb.length() - 2);
+        }
+        sb.append("nReferencias: ").append(contadorBicis).append("\n");
+        return sb.toString();
     }
 }
 
