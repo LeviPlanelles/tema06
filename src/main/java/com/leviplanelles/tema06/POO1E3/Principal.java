@@ -21,45 +21,22 @@ public class Principal {
         switch (choice) {
             case 0 -> {}
             case 1 -> {
-                String grupo = IO.solicitarString("Indique el grupo:");
-                for (int i = 0; i < alumnos.length; i++) {
-                    if (alumnos[i] != null && alumnos[i].getGrupo().equals(grupo)) {
-                        System.out.println(alumnos[i].toString());
-                    }
-                }
+                CentroEducativo.porGrupo();
             }
             case 2 -> {
-                int fechaNacimiento = IO.solicitarInt("Indique la edad:",0,100);
-                for (int i = 0; i < alumnos.length; i++) {
-                    if (alumnos[i] != null && alumnos[i].getEdad() == fechaNacimiento) {
-                        System.out.println(alumnos[i].toString());
-                    }
-                }
+                CentroEducativo.porEdad();
             }
             case 3 -> {
-                String NIA = IO.solicitarString("NIA del alumno:", 0, 10000000);
-                for (int i = 0; i < alumnos.length; i++) {
-                    if (alumnos[i] != null && alumnos[i].getNia().equals(NIA)) {
-                        System.out.println("No se puede añadir un alumnos porque ya existe uno igual");
-                        break;
-                    }
-                }
+                CentroEducativo.porNia();
             }
             case 4 -> {
-
-                String apellido = IO.solicitarString("Pon parte de un apellido:");
-
-                for (int i = 0; i < alumnos.length; i++) {
-                    if (alumnos[i] != null && alumnos[i].getApellidos().contains(apellido)) {
-                        System.out.println(alumnos[i].toString());
-
-                    }
-                }
+                CentroEducativo.porApellidos();
             }
         }
         return choice;
 
     }
+
 
     public static int menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
@@ -76,7 +53,6 @@ public class Principal {
     }
 
     public static void main(String[] args) {
-        int posicion = 0;
         int choice;
         do {
             choice = menuPrincipal();
@@ -84,45 +60,20 @@ public class Principal {
                 case 0 -> {
                 }
                 case 1 -> {
-                    String NIA = IO.solicitarString("NIA del alumno:", 0, 10000000);
-                    for (int i = 0; i < alumnos.length; i++) {
-                        if (alumnos[i] != null && alumnos[i].getNia().equals(NIA)) {
-                            System.out.println("No se puede añadir un alumnos porque ya existe uno igual");
-                            break;
-                        } else {
-                            String nombre = IO.solicitarString("Nombre del alumno:");
-                            String apellido = IO.solicitarString("Apellido del alumno:");
-                            String fecha = IO.solicitarString("Fecha de nacimiento:");
-                            String grupo = IO.solicitarString("Grupo:");
-                            int telefono = IO.solicitarInt("Teléfono contacto:", 0, 1000000000);
-
-                            if (alumnos[posicion] == null) {
-                                alumnos[posicion] = new Alumno(NIA, nombre, apellido, fecha, grupo, telefono);
-                                posicion++;
-                                break;
-
-                            }
-                        }
-                    }
-
+                    nuevoAlumno();
                 }
                 case 2 -> {
-                    String NIA = IO.solicitarString("NIA del alumno:", 0, 10000000);
-                    for (int i = 0; i < alumnos.length; i++) {
-                        if (alumnos[i].getNia().equals(NIA)) {
-                            System.out.println("Se ha encontrado a "+ alumnos[i].getNombre() +" con el NIA: " + NIA);
-                            System.out.println("Eliminando...");
-                            alumnos[i] = null;
-                            break;
-                        } else {
-                            System.out.println("El alumno que has ingresado no consta en la lista de alumnos.");
-                            break;
-                        }
-                    }
+                    bajaAlumno();
                 }
                 case 3 -> subMenu();
             }
         }while (choice != 0);
-
     }
+    public static void nuevoAlumno() {
+        CentroEducativo.nuevoAlumno();
+    }
+    public static void bajaAlumno() {
+        CentroEducativo.bajaAlumnno();
+    }
+
 }
