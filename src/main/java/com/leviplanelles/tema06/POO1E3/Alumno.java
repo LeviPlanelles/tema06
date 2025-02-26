@@ -5,12 +5,12 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class Alumno {
-    private String nia;
-    private String nombre;
-    private String apellidos;
-    private LocalDate fechaNacimiento;
-    private String grupo;
-    private int telefonoContacto;
+    private final String nia;
+    private final String nombre;
+    private final String apellidos;
+    private final LocalDate fechaNacimiento;
+    private final String grupo;
+    private final int telefonoContacto;
 
     public Alumno(String nia, String nombre, String apellidos, String fechaNacimiento, String grupo, int telefonoContacto) {
         this.nia = nia;
@@ -26,24 +26,12 @@ public class Alumno {
         return nia;
     }
 
-    public void setNia(String nia) {
-        this.nia = nia;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getApellidos() {
         return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public LocalDate getFechaNacimiento() {
@@ -53,24 +41,12 @@ public class Alumno {
         return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
     public int getTelefonoContacto() {
         return telefonoContacto;
-    }
-
-    public void setTelefonoContacto(int telefonoContacto) {
-        this.telefonoContacto = telefonoContacto;
     }
 
     @Override
