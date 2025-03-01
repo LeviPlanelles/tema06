@@ -1,6 +1,7 @@
 package com.leviplanelles.tema06.POO1E7;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,7 +15,10 @@ public class Paciente {
     private final int AGE;
     private LocalDateTime FECHA_HORA_ENTRADA;
     private final String SINTOMATOLOGIA;
-    private final float[] preRev;
+    private float[] preRev;
+    private boolean atendido;
+    private String motivoAlta;
+    private LocalDateTime fecha_hora_alta;
 
     public Paciente(int SIP, String NAME, Gender GENDER, int AGE, String SINTOMATOLOGIA) {
         this.SIP = SIP;
@@ -24,6 +28,7 @@ public class Paciente {
         this.FECHA_HORA_ENTRADA = LocalDateTime.now();
         this.SINTOMATOLOGIA = SINTOMATOLOGIA;
         this.preRev = new float[4];
+        this.atendido = false;
     }
 
     public int getSIP() {
@@ -54,6 +59,22 @@ public class Paciente {
         return preRev;
     }
 
+    public boolean isAtendido() {
+        return atendido;
+    }
+
+    public void setAtendido(boolean atendido) {
+        this.atendido = atendido;
+    }
+
+    public void setMotivoAlta(String motivoAlta) {
+        this.motivoAlta = motivoAlta;
+    }
+
+    public void setFecha_hora_alta(LocalDateTime fecha_hora_alta) {
+        this.fecha_hora_alta = fecha_hora_alta;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -68,13 +89,21 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente {" +
-                "SIP=" + SIP + "\n" +
-                "NAME='" + NAME + "\n" +
-                "GENDER=" + GENDER + "\n" +
-                "AGE=" + AGE + "\n" +
-                "FECHA_HORA_ENTRADA=" + FECHA_HORA_ENTRADA + "\n" +
-                "SINTOMATOLOGIA='" + SINTOMATOLOGIA + "\n" +
-                "preRev=" + Arrays.toString(preRev) + "\n}";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String fechaFormateada = FECHA_HORA_ENTRADA.format(formatter);
+        String fechaAltaFormateda = fecha_hora_alta == null ? "No hay fecha de alta" : fecha_hora_alta.format(formatter);
+        String motivo = motivoAlta == null ? "Paciente todavia no atendido" : motivoAlta;
+        return "Paciente {\n" +
+                "SIP = " + SIP + "\n" +
+                "NAME = " + NAME + "\n" +
+                "GENDER = " + GENDER + "\n" +
+                "AGE = " + AGE + "\n" +
+                "FECHA_HORA_ENTRADA = " + fechaFormateada + "\n" +
+                "SINTOMATOLOGIA = " + SINTOMATOLOGIA + "\n" +
+                "preRev = " + Arrays.toString(preRev) + "\n" +
+                "atendido = " + atendido + "\n" +
+                "motivoAlta = " + motivo + "\n" +
+                "fechaHoraAlta = " + fechaAltaFormateda + "\n" +
+                "}";
     }
 }
